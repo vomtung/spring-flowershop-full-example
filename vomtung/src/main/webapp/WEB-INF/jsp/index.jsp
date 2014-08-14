@@ -17,6 +17,7 @@
 			<th>Product Name</th>
 			<th>Description</th>
 			<th>Manufacture</th>
+			<th>Price</th>
 			<th>Option</th>
 		</tr>
 		<c:forEach var="product" items="${products}">
@@ -24,6 +25,7 @@
 				<td>${product.name }</td>
 				<td>${product.description }</td>
 				<td>${product.manufacture }</td>
+				<td>${product.price }</td>
 				<td><a
 					href="${pageContext.request.contextPath }/product/delete/${product.id }.html"
 					onclick="return confirm('Are you sure?')">Delete</a> | <a
