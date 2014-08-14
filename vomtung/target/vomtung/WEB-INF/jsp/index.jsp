@@ -9,24 +9,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-	contextPath ${pageContext.request.contextPath }
-	<a href="${pageContext.request.contextPath }/account/add.html">Add new account</a>
+	<a href="${pageContext.request.contextPath }/product/add.html">Add new product</a>
 	<br>
 	<br>
 	<table border="1">
 		<tr>
 			<th>Product Name</th>
 			<th>Description</th>
+			<th>Manufacture</th>
+			<th>Price</th>
 			<th>Option</th>
 		</tr>
-		<c:forEach var="products" items="${products}">
+		<c:forEach var="product" items="${products}">
 			<tr>
-				<td>${products.name }</td>
-				<td>${products.description }</td>
+				<td>${product.name }</td>
+				<td>${product.description }</td>
+				<td>${product.manufacture }</td>
+				<td>${product.price }</td>
 				<td><a
-					href="${pageContext.request.contextPath }/account/delete/${acc.name }.html"
+					href="${pageContext.request.contextPath }/product/delete/${product.id }.html"
 					onclick="return confirm('Are you sure?')">Delete</a> | <a
-					href="${pageContext.request.contextPath }/account/edit/${acc.name }.html">Edit</a></td>
+					href="${pageContext.request.contextPath }/product/edit/${product.id }.html">Edit</a></td>
 			</tr>
 		</c:forEach>
 	</table>

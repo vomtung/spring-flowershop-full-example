@@ -1,0 +1,44 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- enable use-expressions -->
+	<http auto-config="true">
+		<intercept-url pattern="/admin**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/dba**" access="ROLE_DBA, ROLE_ADMIN" />
+		<intercept-url pattern="/dba/**" access="ROLE_DBA, ROLE_ADMIN" />
+		<intercept-url pattern="/product/**" access="ROLE_ADMIN" />
+
+		<access-denied-handler error-page="/user/403.html" />
+		<form-login login-page="/user.html" default-target-url="/user/welcome.html"
+			authentication-failure-url="/user/login.html?error"
+			username-parameter="username" password-parameter="password" />
+		<logout logout-success-url="/user/login.html?logout" />
+		<csrf />
+	</http>
+
+	<!-- Select users and user_roles from database -->
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+ 
+		   users-by-username-query="
+		     SELECT USERNAME, PASSWORD, CASE ENABLED WHEN 1 THEN 'true' ELSE 'false' END 'ENABLED' 
+		     FROM TBL_USERS 
+		     WHERE USERNAME=?;"
+ 
+		   authorities-by-username-query="
+		    SELECT u.USERNAME, r.ROLENAME 
+			FROM TBL_USERS u, TBL_USER_ROLE r
+			WHERE u.ID = r.USERID
+			AND u.USERNAME=?;"
+ 
+			/>
+		</authentication-provider>
+	</authentication-manager>
+	
+</beans:beans>

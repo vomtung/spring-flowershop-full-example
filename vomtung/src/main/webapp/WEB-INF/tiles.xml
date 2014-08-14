@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    
+    <definition name="index" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/index.jsp" />
+    </definition>
+    
+    <definition name="aboutus" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/aboutus.jsp" />        
+    </definition>   
+    
+    <definition name="category" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/category.jsp" />        
+    </definition>    
+    
+    <definition name="specials" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/specials.jsp" />        
+    </definition>  
+    
+    <definition name="myaccount" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/myaccount.jsp" />        
+    </definition> 
+    
+    <definition name="register" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/register.jsp" />        
+    </definition> 
+    
+    <definition name="details" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/details.jsp" />        
+    </definition> 
+    
+    <definition name="contact" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/contact.jsp" />        
+    </definition> 
+    
+    <definition name="cart" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/cart.jsp" />        
+    </definition> 
+ 
+</tiles-definitions>
