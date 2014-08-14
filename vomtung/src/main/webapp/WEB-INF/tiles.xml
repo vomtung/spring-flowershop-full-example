@@ -40,4 +40,11 @@
         <put-attribute name="content" value="/WEB-INF/jsp/cart.jsp" />        
     </definition> 
  
+ 	<definition name="user/login" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/user/login.jsp" />
+    </definition>
+    
+    <definition name="user/myaccount" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/user/myaccount.jsp" />
+    </definition>
 </tiles-definitions>

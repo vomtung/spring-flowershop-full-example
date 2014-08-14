@@ -45,9 +45,9 @@ public class UserController {
 		return "user/403";
 	}
 	
-	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
+	@RequestMapping(value = "/myaccount", method = RequestMethod.GET)
 	public String welcome() {
-		return "welcome";
+		return "user/myaccount";
 	}
 
 }
