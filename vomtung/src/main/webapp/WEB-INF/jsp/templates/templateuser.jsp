@@ -22,7 +22,7 @@
                         <li ${page == 'aboutus' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/template/aboutus.html">about us</a></li>
                         <li ${page == 'category' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/template/category.html">flowers</a></li>
                         <li ${page == 'specials' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/template/specials.html">specials gifts</a></li>
-                        <li ${page == 'myaccount' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/user/login.html">my account</a></li>
+                        <li ${page == 'myaccount' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/user/myaccount.html">my account</a></li>
                         <li ${page == 'register' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/template/register.html">register</a></li>
                         <li ${page == 'details' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/template/details.html">prices</a></li>
                         <li ${page == 'contact' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/template/contact.html">contact</a></li>
