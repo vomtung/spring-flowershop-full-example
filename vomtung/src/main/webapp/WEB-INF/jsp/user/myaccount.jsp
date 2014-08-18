@@ -12,12 +12,12 @@
 	</c:if>
 	
 	Upload image of product
-	<form method="POST" action="../uploadfile/image.html" enctype="multipart/form-data">
+	<form method="POST" action="../fileupload/image.html" enctype="multipart/form-data">
  
 		<!-- <form:errors path="*" cssClass="errorblock" element="div" /> -->
  
 		<input type="file" name="file" />
-		<input  name="submit" class="register" type="submit" value="Login"/>
+		<input  name="submit" class="register" type="submit" value="Upload"/>
 		<!-- <span><form:errors path="file" cssClass="error" /> -->
 		</span>
  
