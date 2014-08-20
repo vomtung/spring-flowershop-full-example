@@ -10,17 +10,14 @@
     <c:if test="${pageContext.request.userPrincipal.name != null}">
 		<h2>Welcome : ${pageContext.request.userPrincipal.name} | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a></h2>  
 	</c:if>
-	
-	Upload image of product
-	<form method="POST" action="../fileupload/image.html" enctype="multipart/form-data">
+	<!-- <form method="POST" action="../image/upload.html" enctype="multipart/form-data">
  
-		<!-- <form:errors path="*" cssClass="errorblock" element="div" /> -->
+		<form:errors path="*" cssClass="errorblock" element="div" />
  
 		<input type="file" name="file" />
 		<input  name="submit" class="register" type="submit" value="Upload"/>
-		<!-- <span><form:errors path="file" cssClass="error" /> -->
+		<span><form:errors path="file" cssClass="error" />
 		</span>
- 
-	</form>
- 
+	</form> -->
+	<p><a href="../product/add.html">Create New Product</a></p>
 </div>	

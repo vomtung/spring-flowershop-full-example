@@ -11,7 +11,7 @@
 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/dba**" access="ROLE_DBA, ROLE_ADMIN" />
 		<intercept-url pattern="/dba/**" access="ROLE_DBA, ROLE_ADMIN" />
-		<intercept-url pattern="/product/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/product/**" access="ROLE_ADMIN,ROLE_USER,ROLE_DBA" />
 		<intercept-url pattern="/user/myaccount**" access="ROLE_DBA,ROLE_ADMIN,ROLE_USER" />
 
 		<access-denied-handler error-page="/user/403.html" />

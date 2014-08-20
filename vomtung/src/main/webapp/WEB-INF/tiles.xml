@@ -51,4 +51,8 @@
     <definition name="user/403" template="/WEB-INF/jsp/templates/templateuser.jsp">
         <put-attribute name="content" value="/WEB-INF/jsp/user/403.jsp" />
     </definition>
+    
+    <definition name="product/add" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/add_product.jsp" />
+    </definition>
 </tiles-definitions>

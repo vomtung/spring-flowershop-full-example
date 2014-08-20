@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="product")
@@ -16,6 +19,8 @@ public class Product {
 	private long id;
 	
 	@Column(name="name")
+	@NotNull
+	@NotEmpty
 	private String name;
 	
 	@Column(name="description")
@@ -27,6 +32,17 @@ public class Product {
 	@Column(name="price")
 	private long price;
 	
+	@Column(name="image_name")
+	private String imageName;
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
 	public Product() {
 		super();
 	}

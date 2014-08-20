@@ -51,36 +51,9 @@
 					<img src="${pageContext.servletContext.contextPath}/resources/user/images/new_icon.gif" alt="" title="" />
 				</span> 
 					<a href="details.html">
-						<img src="${pageContext.servletContext.contextPath}/resources/user/images/thumb1.gif" alt="" title="" class="thumb" border="0" />
+						<img src="image/getimage.html?fileName=${product.imageName }" alt="" title="" width="100" height="100" class="thumb" border="0" />
 					</a>
 			</div>
 		</div>
 	</c:forEach>
-
-
-    <div class="new_prod_box">
-        <a href="details.html">product name</a>
-        <div class="new_prod_bg">
-            <span class="new_icon"><img src="${pageContext.servletContext.contextPath}/resources/user/images/new_icon.gif" alt="" title="" /></span>
-            <a href="details.html"><img src="<%=request.getRealPath("/") + "upload\\1408351802912.jpg"%>" alt="Upload Image" /></a>
-        </div>           
-    </div>
-<!-- 
-    <div class="new_prod_box">
-        <a href="details.html">product name</a>
-        <div class="new_prod_bg">
-            <span class="new_icon"><img src="${pageContext.servletContext.contextPath}/resources/user/images/new_icon.gif" alt="" title="" /></span>
-            <a href="details.html"><img src="${pageContext.servletContext.contextPath}/resources/user/images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-        </div>           
-    </div>                    
-
-    <div class="new_prod_box">
-        <a href="details.html">product name</a>
-        <div class="new_prod_bg">
-            <span class="new_icon"><img src="${pageContext.servletContext.contextPath}/resources/user/images/new_icon.gif" alt="" title="" /></span>
-            <a href="details.html"><img src="${pageContext.servletContext.contextPath}/resources/user/images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-        </div>           
-    </div> 
-     -->      
-
 </div> 
