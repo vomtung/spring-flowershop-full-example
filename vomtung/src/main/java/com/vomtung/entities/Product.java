@@ -1,10 +1,13 @@
 package com.vomtung.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -35,6 +38,22 @@ public class Product {
 	@Column(name="image_name")
 	private String imageName;
 
+	@ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "category_id",referencedColumnName = "id", nullable = false)
+	Category category;
+	
+	public Product() {
+		super();
+	}
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	public String getImageName() {
 		return imageName;
 	}
@@ -43,9 +62,6 @@ public class Product {
 		this.imageName = imageName;
 	}
 
-	public Product() {
-		super();
-	}
 
 	public long getId() {
 		return id;

@@ -18,7 +18,14 @@
 		description    <form:input   path="description"/><br>
 		price    <form:input   path="price"/><br>
 		manufacture <form:input path="manufacture"/><br>
-		<input type="file" name="file" /><br>
+		Category
+		<form:select path="category">
+		<form:options items="${categories}" itemValue="id" itemLabel="categoryName" />
+		</form:select>
+		<form:errors path="category" class ="error"/><br>
+		<br/>
+		Product image<input type="file" name="file" />
+		<form:errors path="imageName" class ="error"/><br>
 		<input type="submit" class="register" value="Save">
 	</form:form>
 

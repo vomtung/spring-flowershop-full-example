@@ -1,21 +1,33 @@
 package com.vomtung.web;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.vomtung.entities.Category;
+import com.vomtung.service.CategoryService;
 
 @Controller
 @RequestMapping(value = "/template")
 public class TemplateController {
 
+	@Autowired
+	CategoryService categoryService;
+	
     public TemplateController() {
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
     	modelMap.addAttribute("page", "home");
-        return "index";
+    	List<Category>categories=this.categoryService.findAll();
+    	modelMap.addAttribute("categories", categories);
+    	return "redirect:/index.html";
     }
 
     @RequestMapping(value = "/aboutus", method = RequestMethod.GET)
@@ -39,6 +51,7 @@ public class TemplateController {
     @RequestMapping(value = "/myaccount", method = RequestMethod.GET)
     public String myaccount(ModelMap modelMap) {
     	modelMap.addAttribute("page", "myaccount");
+    	
         return "myaccount";
     }
     

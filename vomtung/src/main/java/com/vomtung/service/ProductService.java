@@ -2,25 +2,36 @@ package com.vomtung.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.vomtung.dao.ProductDAO;
 import com.vomtung.entities.Product;
 
 public interface ProductService {
 
-	public abstract ProductDAO getProductDAO();
+	public ProductDAO getProductDAO();
 
-	public abstract void setProductDAO(ProductDAO productDAO);
+	public void setProductDAO(ProductDAO productDAO);
 
-	public abstract void create(Product product);
+	@Transactional
+	public void create(Product product);
 
-	public abstract void delete(Product account);
+	public void delete(Product account);
 
-	public abstract void edit(Product account);
+	public void edit(Product account);
 
-	public abstract Product findByUsername(String username);
-
+	public Product findByUsername(String username);
+	
 	public abstract Product findById(long id);
 
 	public abstract List<Product> findAll();
+	
+	public List<Product> findByCategory(long categoryId);
+	
+	public List<Product> findFeaturedProduct();
+	
+	public List<Product> findNewProduct();
+	
+	public List<Product> findPromotionProduct();
 
 }

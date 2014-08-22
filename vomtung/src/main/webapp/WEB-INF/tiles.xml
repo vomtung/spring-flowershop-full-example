@@ -55,4 +55,12 @@
     <definition name="product/add" template="/WEB-INF/jsp/templates/templateuser.jsp">
         <put-attribute name="content" value="/WEB-INF/jsp/add_product.jsp" />
     </definition>
+    
+    <definition name="addCategory" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/add_category.jsp" />
+    </definition>
+    
+    <definition name="categories" template="/WEB-INF/jsp/templates/templateuser.jsp">
+        <put-attribute name="content" value="/WEB-INF/jsp/categories.jsp" />
+    </definition>
 </tiles-definitions>

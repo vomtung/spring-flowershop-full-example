@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.*;
 import com.vomtung.entities.Product;
 
 @Repository("ProductDAO")
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional
 public class ProductDAO {
 
 	@PersistenceContext
@@ -25,6 +25,7 @@ public class ProductDAO {
 	}
 
 	public void create(Product product) {
+		//entityManager.merge(product.getCategory());
 		entityManager.persist(product);
 	}
 
@@ -44,10 +45,20 @@ public class ProductDAO {
 		return entityManager.find(Product.class, id);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Product> findAll() {
-		Query query = entityManager.createQuery("select acc from Product acc");
-		return (List<Product>) query.getResultList();
+		Query query = entityManager.createQuery("select acc from Product acc",Product.class);
+		return query.getResultList();
 	}
 
+	public List<Product> findByCategory(long categoryId) {
+		Query query = entityManager.createQuery("select pd from Product pd where pd.category.id=:categoryId",Product.class);
+		query.setParameter("categoryId", categoryId);
+		return query.getResultList();
+	}
+	
+	public List<Product> findByCategoryName(String categoryName) {
+		Query query = entityManager.createQuery("select pd from Product pd where pd.category.categoryName IS :categoryName",Product.class);
+		query.setParameter("categoryName", categoryName);
+		return query.getResultList();
+	}
 }

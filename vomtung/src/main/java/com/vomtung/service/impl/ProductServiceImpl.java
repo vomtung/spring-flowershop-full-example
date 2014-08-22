@@ -4,8 +4,11 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.vomtung.dao.CategoryDAO;
 import com.vomtung.dao.ProductDAO;
+import com.vomtung.entities.Category;
 import com.vomtung.entities.Product;
 import com.vomtung.service.ProductService;
 
@@ -14,6 +17,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductDAO productDAO;
+	
+	@Autowired
+	private CategoryDAO categoryDAO;
 
 	/* (non-Javadoc)
 	 * @see com.vomtung.service.ProductServicei#getProductDAO()
@@ -32,7 +38,12 @@ public class ProductServiceImpl implements ProductService {
 	/* (non-Javadoc)
 	 * @see com.vomtung.service.ProductServicei#create(com.vomtung.entities.Product)
 	 */
+	@Transactional
 	public void create(Product product) {
+		Category category=categoryDAO.findById(product.getCategory().getId());
+		category.getProducts().add(product);
+		categoryDAO.edit(category);
+		product.setCategory(category);
 		this.productDAO.create(product);
 	}
 
@@ -71,4 +82,19 @@ public class ProductServiceImpl implements ProductService {
 		return this.productDAO.findAll();
 	}
 
+	public List<Product> findByCategory(long categoryId){
+		return productDAO.findByCategory(categoryId);
+	}
+	
+	public List<Product> findFeaturedProduct(){
+		return this.productDAO.findByCategoryName("Featured Products");
+	}
+	
+	public List<Product> findNewProduct(){
+		return this.productDAO.findByCategoryName("New Newducts");
+	}
+	
+	public List<Product> findPromotionProduct(){
+		return this.productDAO.findByCategoryName("Promotions Products");
+	}
 }

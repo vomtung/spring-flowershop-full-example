@@ -3,15 +3,19 @@ package com.vomtung.web;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vomtung.entities.Category;
 import com.vomtung.entities.Product;
+import com.vomtung.service.CategoryService;
 import com.vomtung.service.ProductService;
 import com.vomtung.util.Utils;
 
@@ -31,13 +37,23 @@ public class ProductController {
 	@Autowired(required = true)
 	private ProductService productService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(ModelMap mm) {
+		
+		List<Category> categories = this.categoryService.findAll();
+		mm.addAttribute("categories", categories);
+
+		List<Product> promotionProducts = productService.findPromotionProduct();
+		mm.addAttribute("promotionProducts", promotionProducts);
 		mm.addAttribute("product", new Product());
 		return "product/add";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@Transactional
 	public String add(@Valid @ModelAttribute(value = "product") Product product,BindingResult result,@RequestParam("file") MultipartFile file,HttpServletRequest request) {
 		
 		if(result.hasErrors()) {
@@ -46,7 +62,7 @@ public class ProductController {
 		
 		File serverFile;
 		//image
-		if (!file.isEmpty()) {
+		if (!file.isEmpty()||(!file.getContentType().startsWith("image"))) {
             try {
                 byte[] bytes = file.getBytes();
                 
@@ -60,10 +76,12 @@ public class ProductController {
                 stream.write(bytes);
                 stream.close();
             } catch (Exception e) {
-                return "You failed to upload => " + e.getMessage();
+            	result.rejectValue("image", "error when upload image");
+                return "product/add";
             }
         } else {
-            return "You failed to upload "+ " because the file was empty.";
+        	result.rejectValue("image", "error when upload image");
+            return "product/add";
         }
 		
 		product.setImageName(serverFile.getName());

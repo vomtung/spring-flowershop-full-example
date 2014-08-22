@@ -20,4 +20,5 @@
 		</span>
 	</form> -->
 	<p><a href="../product/add.html">Create New Product</a></p>
+	<p><a href="../category/add.html">Create New Category</a></p>
 </div>	
