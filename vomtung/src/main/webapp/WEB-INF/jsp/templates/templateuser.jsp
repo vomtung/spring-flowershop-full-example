@@ -14,7 +14,6 @@
     <body>
 
         <div id="wrap">
-
             <div class="header">
                 <div class="logo"><a href="index.html"><img src="${pageContext.servletContext.contextPath}/resources/user/images/logo.gif" alt="" title="" border="0" /></a></div>            
                 <div id="menu">
@@ -29,18 +28,14 @@
                         <li ${page == 'contact' ? 'class="selected"' : ''}><a href="${pageContext.servletContext.contextPath}/template/contact.html">contact</a></li>
                     </ul>
                 </div>     
-
-
             </div> 
-
-
             <div class="center_content">
                 <div class="left_content">
 
                     <tiles:insertAttribute name="content"></tiles:insertAttribute>
-
                         <div class="clear"></div>
-                    </div><!--end of left content-->
+                    </div>
+                    <!--end of left content-->
 
                     <div class="right_content">
                         <div class="languages_box">

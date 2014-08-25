@@ -3,6 +3,8 @@ package com.vomtung.service.impl;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,7 +12,9 @@ import com.vomtung.dao.CategoryDAO;
 import com.vomtung.dao.ProductDAO;
 import com.vomtung.entities.Category;
 import com.vomtung.entities.Product;
+import com.vomtung.entities.User;
 import com.vomtung.service.ProductService;
+import com.vomtung.service.UserService;
 
 @Component
 public class ProductServiceImpl implements ProductService {
@@ -21,6 +25,8 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private CategoryDAO categoryDAO;
 
+	@Autowired
+	private UserService userService;
 	/* (non-Javadoc)
 	 * @see com.vomtung.service.ProductServicei#getProductDAO()
 	 */
@@ -40,6 +46,12 @@ public class ProductServiceImpl implements ProductService {
 	 */
 	@Transactional
 	public void create(Product product) {
+		//Set Owner
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username=auth.getName();
+		User user=userService.findByUserName(username);
+		product.setOwner(user);
+		//set category
 		Category category=categoryDAO.findById(product.getCategory().getId());
 		category.getProducts().add(product);
 		categoryDAO.edit(category);

@@ -42,6 +42,10 @@ public class Product {
     @JoinColumn(name = "category_id",referencedColumnName = "id", nullable = false)
 	Category category;
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "owner",referencedColumnName = "id", nullable = false)
+	User owner;
+	
 	public Product() {
 		super();
 	}
@@ -77,6 +81,7 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -95,4 +100,13 @@ public class Product {
 	public void setPrice(long price) {
 		this.price = price;
 	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+	
 }

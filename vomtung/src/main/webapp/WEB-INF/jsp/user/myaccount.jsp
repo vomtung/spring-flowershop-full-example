@@ -21,4 +21,6 @@
 	</form> -->
 	<p><a href="../product/add.html">Create New Product</a></p>
 	<p><a href="../category/add.html">Create New Category</a></p>
+	<p><a href="../user/add.html">My Product</a></p>
+	<p><a href="../user/add.html">My Categories</a></p>
 </div>	

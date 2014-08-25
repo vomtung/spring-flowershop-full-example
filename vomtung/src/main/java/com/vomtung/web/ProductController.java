@@ -11,11 +11,11 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +27,7 @@ import com.vomtung.entities.Category;
 import com.vomtung.entities.Product;
 import com.vomtung.service.CategoryService;
 import com.vomtung.service.ProductService;
+import com.vomtung.service.UserService;
 import com.vomtung.util.Utils;
 
 
@@ -43,11 +44,13 @@ public class ProductController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(ModelMap mm) {
 		
+		if(mm.get("categories")==null){
 		List<Category> categories = this.categoryService.findAll();
 		mm.addAttribute("categories", categories);
-
+		}
 		List<Product> promotionProducts = productService.findPromotionProduct();
 		mm.addAttribute("promotionProducts", promotionProducts);
+		
 		mm.addAttribute("product", new Product());
 		return "product/add";
 	}

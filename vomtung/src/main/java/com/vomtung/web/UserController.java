@@ -1,5 +1,8 @@
 package com.vomtung.web;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,9 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import com.vomtung.entities.Category;
+import com.vomtung.entities.Product;
+import com.vomtung.service.CategoryService;
+import com.vomtung.service.ProductService;
+
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+	
+	@Autowired(required = true)
+	private ProductService productService;
+	
+	@Autowired(required = true)
+	private CategoryService categoryService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
@@ -46,9 +60,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/myaccount", method = RequestMethod.GET)
-	public String myaccount() {
+	public String myaccount(ModelMap mm) {
 		
+		if(mm.get("categories")==null){
+			List<Category>categories=this.categoryService.findAll();
+	    	mm.addAttribute("categories", categories);
+			}
+			
+			List<Product>promotionProducts=productService.findPromotionProduct();
+			mm.addAttribute("promotionProducts", promotionProducts);
+			
 		return "user/myaccount";
 	}
 
+	
+	
 }
