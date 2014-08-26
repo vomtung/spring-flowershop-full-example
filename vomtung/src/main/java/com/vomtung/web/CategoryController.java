@@ -35,6 +35,6 @@ public class CategoryController {
 			List<Product>promotionProducts=productService.findPromotionProduct();
 			mm.addAttribute("promotionProducts", promotionProducts);
 			
-		return "index.html";
+		return "index";
 	}
 }

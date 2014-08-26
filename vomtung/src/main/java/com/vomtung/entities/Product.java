@@ -38,11 +38,11 @@ public class Product {
 	@Column(name="image_name")
 	private String imageName;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "category_id",referencedColumnName = "id", nullable = false)
 	Category category;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "owner",referencedColumnName = "id", nullable = false)
 	User owner;
 	

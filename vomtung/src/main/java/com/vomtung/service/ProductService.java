@@ -16,7 +16,7 @@ public interface ProductService {
 	@Transactional
 	public void create(Product product);
 
-	public void delete(Product account);
+	public void delete(Long productId);
 
 	public void edit(Product account);
 

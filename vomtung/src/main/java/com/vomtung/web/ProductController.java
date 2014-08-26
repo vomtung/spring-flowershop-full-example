@@ -95,8 +95,8 @@ public class ProductController {
 	
 	@RequestMapping(value = "/delete/{productId}", method = RequestMethod.GET)
 	public String delete(@PathVariable(value = "productId") long id) {
-		productService.delete(productService.findById(id));
-		return "redirect:/index.html";
+		productService.delete(id);
+		return "redirect:/product/myproduct.html";
 	}
 	
 	@RequestMapping(value = "/edit/{productId}", method = RequestMethod.GET)

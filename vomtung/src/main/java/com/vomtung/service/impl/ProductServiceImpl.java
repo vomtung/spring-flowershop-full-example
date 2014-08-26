@@ -65,8 +65,18 @@ public class ProductServiceImpl implements ProductService {
 	/* (non-Javadoc)
 	 * @see com.vomtung.service.ProductServicei#delete(com.vomtung.entities.Product)
 	 */
-	public void delete(Product account) {
-		this.productDAO.delete(account);
+	@Transactional
+	public void delete(Long productId) {
+		//Get User
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username=auth.getName();
+		User user=userDAO.findByUserName(username);
+		//Get Product
+		Product product=productDAO.findById(productId);
+		//Check if user is owner of the product
+		if(user.getId()==product.getOwner().getId()){
+		this.productDAO.delete(product);
+		}
 	}
 
 	/* (non-Javadoc)
