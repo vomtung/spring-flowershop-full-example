@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.vomtung.dao.CategoryDAO;
 import com.vomtung.dao.ProductDAO;
+import com.vomtung.dao.UserDAO;
 import com.vomtung.entities.Category;
 import com.vomtung.entities.Product;
 import com.vomtung.entities.User;
@@ -17,6 +18,7 @@ import com.vomtung.service.ProductService;
 import com.vomtung.service.UserService;
 
 @Component
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
@@ -26,7 +28,8 @@ public class ProductServiceImpl implements ProductService {
 	private CategoryDAO categoryDAO;
 
 	@Autowired
-	private UserService userService;
+	private UserDAO userDAO;
+	
 	/* (non-Javadoc)
 	 * @see com.vomtung.service.ProductServicei#getProductDAO()
 	 */
@@ -49,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
 		//Set Owner
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username=auth.getName();
-		User user=userService.findByUserName(username);
+		User user=userDAO.findByUserName(username);
 		product.setOwner(user);
 		//set category
 		Category category=categoryDAO.findById(product.getCategory().getId());
@@ -69,15 +72,28 @@ public class ProductServiceImpl implements ProductService {
 	/* (non-Javadoc)
 	 * @see com.vomtung.service.ProductServicei#edit(com.vomtung.entities.Product)
 	 */
-	public void edit(Product account) {
-		this.productDAO.edit(account);
+	@Transactional
+	public void edit(Product product) {
+		Category category=categoryDAO.findById(product.getCategory().getId());
+		User owner=userDAO.findById(product.getOwner().getId());
+		
+		product.setOwner(owner);
+		product.setCategory(category);
+		this.productDAO.edit(product);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.vomtung.service.ProductServicei#findByUsername(java.lang.String)
 	 */
-	public Product findByUsername(String username) {
-		return this.productDAO.findByUsername(username);
+	@Transactional
+	public List<Product> findByOwner(Long ownerId) {
+		if(ownerId==null){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username=auth.getName();
+		User user=userDAO.findByUserName(username);
+		ownerId=user.getId();
+		}
+		return this.productDAO.findByOwner(ownerId);
 	}
 	
 	/* (non-Javadoc)

@@ -102,12 +102,32 @@ public class ProductController {
 	@RequestMapping(value = "/edit/{productId}", method = RequestMethod.GET)
 	public String edit(@PathVariable(value = "productId") long productId,ModelMap mm) {
 		mm.addAttribute("product", productService.findById(productId));
-		return "edit";
+		if(mm.get("categories")==null){
+			List<Category> categories = this.categoryService.findAll();
+			mm.addAttribute("categories", categories);
+			}
+		return "editproduct";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String edit(@ModelAttribute(value = "product") Product product) {
 		productService.edit(product);
 		return "redirect:/index.html";
+	}
+	
+	@RequestMapping(value = "/userproduct/{ownerId}", method = RequestMethod.GET)
+	public String userproduct(@RequestParam("ownerId" ) Long ownerId,ModelMap mm) {
+		
+		List<Product>products=productService.findByOwner(ownerId);
+		mm.addAttribute("products", products);
+		return "userproduct";
+	}
+	
+	@RequestMapping(value = "/myproduct", method = RequestMethod.GET)
+	public String myProduct(ModelMap mm) {
+		
+		List<Product>products=productService.findByOwner(null);
+		mm.addAttribute("products", products);
+		return "myproduct";
 	}
 }

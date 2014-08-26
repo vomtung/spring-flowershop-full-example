@@ -20,7 +20,7 @@ public interface ProductService {
 
 	public void edit(Product account);
 
-	public Product findByUsername(String username);
+	public List<Product> findByOwner(Long ownerId);
 	
 	public abstract Product findById(long id);
 

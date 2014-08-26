@@ -29,7 +29,7 @@ public class UserDAO {
 		return entityManager.find(User.class, id);
 	}
 	
-	public User findByUsername(String username) {
+	public User findByUserName(String username) {
 		Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.username=:owner  ",User.class);
 		query.setParameter("owner", username);
 		return (User)((query.getResultList().size()>2||query.getResultList().size()==0)?null:query.getResultList().get(0));

@@ -25,7 +25,6 @@ public class ProductDAO {
 	}
 
 	public void create(Product product) {
-		//entityManager.merge(product.getCategory());
 		entityManager.persist(product);
 	}
 
@@ -37,8 +36,10 @@ public class ProductDAO {
 		entityManager.merge(product);
 	}
 
-	public Product findByUsername(String username) {
-		return entityManager.find(Product.class, username);
+	public List<Product> findByOwner(Long ownerId) {
+		Query query = entityManager.createQuery("select pd from Product pd WHERE pd.owner.id=:ownerId",Product.class);
+		query.setParameter("ownerId", ownerId);
+		return query.getResultList();
 	}
 	
 	public Product findById(Long id) {
@@ -46,7 +47,7 @@ public class ProductDAO {
 	}
 
 	public List<Product> findAll() {
-		Query query = entityManager.createQuery("select acc from Product acc",Product.class);
+		Query query = entityManager.createQuery("select pd from Product pd",Product.class);
 		return query.getResultList();
 	}
 

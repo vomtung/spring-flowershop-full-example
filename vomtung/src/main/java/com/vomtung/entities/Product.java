@@ -91,6 +91,7 @@ public class Product {
 	public String getManufacture() {
 		return manufacture;
 	}
+	
 	public void setManufacture(String manufacture) {
 		this.manufacture = manufacture;
 	}
