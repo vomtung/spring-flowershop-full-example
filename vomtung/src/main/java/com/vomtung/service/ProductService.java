@@ -22,9 +22,9 @@ public interface ProductService {
 
 	public List<Product> findByOwner(Long ownerId);
 	
-	public abstract Product findById(long id);
+	public Product findById(long id);
 
-	public abstract List<Product> findAll();
+	public List<Product> findAll();
 	
 	public List<Product> findByCategory(long categoryId);
 	

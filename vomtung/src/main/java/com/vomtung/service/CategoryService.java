@@ -9,18 +9,18 @@ import com.vomtung.entities.Category;
 
 public interface CategoryService {
 
-	public abstract CategoryDAO getCategoryDAO();
+	public CategoryDAO getCategoryDAO();
 
-	public abstract void setCategoryDAO(CategoryDAO categoryDAO);
+	public void setCategoryDAO(CategoryDAO categoryDAO);
 
-	public abstract void create(Category category);
+	public void create(Category category);
 
-	public abstract void delete(Category category);
+	public void delete(Category category);
 
-	public abstract void edit(Category category);
+	public void edit(Category category);
 
-	public abstract Category findById(long id);
+	public Category findById(long id);
 
-	public abstract List<Category> findAll();
+	public List<Category> findAll();
 
 }
