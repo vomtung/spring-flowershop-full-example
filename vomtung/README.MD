@@ -6,6 +6,12 @@ Fill GroupId and ArtifactId
 Choose Finish
 
 Right click on the project 
+In eclipse you will see four tab
+Source|Project|Library|Order and Export
+click to source -> click Add Folder  -> check main -> click Ok -> click Ok
+
+
+Right click on the project 
 Choose New->Package
 src: vomtung/src/main
 Package name : java
