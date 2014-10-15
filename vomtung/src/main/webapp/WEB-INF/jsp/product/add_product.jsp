@@ -13,20 +13,61 @@
 <body>
 
 	<form:form method="post" commandName="product" action="add.html" enctype="multipart/form-data">
-		Productname <form:input path="name"/>
-					<form:errors path="name" class ="error"/><br>
-		description    <form:input   path="description"/><br>
-		price    <form:input   path="price"/><br>
-		manufacture <form:input path="manufacture"/><br>
-		Category
-		<form:select path="category">
-		<form:options items="${categories}" itemValue="id" itemLabel="categoryName" />
-		</form:select>
-		<form:errors path="category" class ="error"/><br>
-		<br/>
-		Product image<input type="file" name="file" />
-		<form:errors path="imageName" class ="error"/><br>
-		<input type="submit" class="register" value="Save">
+	<table>
+		<tr>
+			<td>
+				Productname 
+			</td>
+			<td>
+				<form:input path="name"/><form:errors path="name" class ="error"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				description    
+			</td>
+			<td>
+				<form:input   path="description"/>
+			</td>
+		</tr>
+			<td>
+				price    
+			</td>
+			<td>
+				<form:input   path="price"/>
+			</td>
+		</tr>
+			<td>
+				manufacture
+			</td>
+			<td>
+				<form:input path="manufacture"/>
+			</td>
+		</tr>
+			<td>
+				Category
+			</td>
+			<td>
+				<form:select path="category">
+				<form:options items="${categories}" itemValue="id" itemLabel="categoryName" />
+				</form:select>
+				<form:errors path="category" class ="error"/>
+			</td>
+		</tr>
+			<td>
+				Product image
+			</td>
+			<td>
+				<input type="file" name="file" />
+				<form:errors path="imageName" class ="error"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" class="register" value="Save"/>
+			</td>
+		</tr>
+	</table>
 	</form:form>
 
 </body>
